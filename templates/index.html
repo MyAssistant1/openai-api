@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Ses Kaydı</title>
+</head>
+<body>
+    <h1>Flask Ses Kaydı</h1>
+    <input type="file" id="audioInput" accept="audio/*">
+    <button onclick="recordAudio()">Kayıt Başlat</button>
+
+    <script>
+        function recordAudio() {
+            const audioInput = document.getElementById('audioInput');
+            const audioFile = audioInput.files[0];
+            
+            if (!audioFile) {
+                alert('Lütfen bir ses dosyası seçin.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('audio', audioFile);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Kayıt tamamlandı. Sonuç: ' + data.result);
+            })
+            .catch(error => {
+                console.error('Hata:', error);
+            });
+        }
+    </script>
+</body>
+</html>
