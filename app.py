@@ -11,6 +11,8 @@ from pydub import AudioSegment
 from io import BytesIO
 import time
 import os
+import findwords
+import mailatma
 
 def change_file_extension(file_path, new_extension):
     # Dosya adını ve uzantısını ayrıştır
@@ -45,14 +47,14 @@ def index():
 @app.route('/upload', methods=['POST'])
 def upload():
 
-   
+
     # dosya ismi degistirme
     file_path = "/home/tangel/recorded_audio.ogx"
     new_extension = "mp3"
 
     change_file_extension(file_path, new_extension)
 
-
+    result = " email atilamadi"
     
     #dosya okuma openai
     new_file = open("/home/tangel/recorded_audio.mp3", "rb")
@@ -62,11 +64,21 @@ def upload():
     response_format="text"
 )
     print(transcript)
+    words = findwords.analiz_et(transcript)
+    print(words)
+    
+    if "e-mail" in words or "E-mail" in words or "email" in words:
+        mailatma.emailgonder()
+        result = "email atıldı"
+
+
 
     # dosyayi silme
     file_to_delete = "/home/tangel/recorded_audio.mp3"  # Silmek istediğiniz dosyanın yolu ve adı
     delete_file(file_to_delete)
-    return 'Başarıyla alındı!'
+    return   result
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

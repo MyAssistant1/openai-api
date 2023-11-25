@@ -33,6 +33,22 @@ class EtkinlikTakvimi:
 # Kullanım örneği
 takvim = EtkinlikTakvimi()
 
+#database #arkadas listesi
+#kullanicak kisinin databaseini cekmemiz lazim. 
+#if eger mail adresi yksa mail adresini sor yoksa sahsin google hesabina baglanma iste.
+#arkadas listesi mehmet acar salih tangel
+#mehmete ve salihe mail at.
+
+#if send
+    #who
+        #mehmet and salih.
+
+#send e-mail to salih and mehmet
+#add event
+#set an alarm
+#mehmet salih    mail at dediginde mail at.py calisicak 
+
+
 # E-posta adresleri
 email_adresleri = [
     "mehmet-acar-gs@hotmail.com",
@@ -40,19 +56,21 @@ email_adresleri = [
     "salihtangel@gmail.com"
 ]
 
+
 # Etkinlik eklemek
 takvim.etkinlik_ekle("2023-11-30 14:00")
 
-# E-posta göndermek
-try:
-    for email_adresi in email_adresleri:
-        takvim.email_gonder(    "mhmtacargs107@gmail.com","xvft qgqs dgjz kjrm", email_adresi, "Toplanti Daveti", "Toplanti zamani: 2023-11-30 14:00")
-        print(f"E-posta gönderildi: {email_adresi}")
-except Exception as e:
-    print(f"E-posta gönderme hatasi: {e}")
+def emailgonder(): 
+    # E-posta göndermek
+    try:
+        for email_adresi in email_adresleri:
+            takvim.email_gonder(    "mhmtacargs107@gmail.com","xvft qgqs dgjz kjrm", email_adresi, "Toplanti Daveti", "Toplanti zamani: 2023-11-30 14:00")
+            print(f"E-posta gönderildi: {email_adresi}")
+    except Exception as e:
+        print(f"E-posta gönderme hatasi: {e}")
 
-# Gönderilenler listesini göstermek
-print("Gönderilenler Listesi:")
-for email in takvim.gonderilenler:
-    print(email)
+    # Gönderilenler listesini göstermek
+    print("Gönderilenler Listesi:")
+    for email in takvim.gonderilenler:
+        print(email)
 

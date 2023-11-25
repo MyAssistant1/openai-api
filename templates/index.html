@@ -16,7 +16,10 @@
 
 <audio id="audioPlayer" controls></audio>
 <div id="resultDiv"></div>
+
+
 <script>
+
 //import DOWNLOADPATH from './constant.py' ;
 let mediaRecorder;
 let audioChunks = [];
@@ -95,11 +98,11 @@ function uploadAudio(blob) {
     .then(response => response.text())
     .then(data => {
         console.log('Server response:', data);
-        //document.getElementById('resultDiv').innerText = 'Server Response: ' + data;
+        document.getElementById('resultDiv').innerText = 'Server Response: ' + data;
     })
     .catch(error => {
         console.error('Error:', error);
-        //document.getElementById('resultDiv').innerText = 'Error: ' + error.message;
+        document.getElementById('resultDiv').innerText = 'Error: ' + error.message;
     });
 
     audioChunks = []; // Önceki kaydı temizle
@@ -111,6 +114,7 @@ function updateTimer() {
     elapsedTime += 1;
     document.getElementById('timer').innerText = 'Geçen Süre: ' + elapsedTime + ' saniye';
 }
+
 
 
 </script>
