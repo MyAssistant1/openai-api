@@ -1,0 +1,1 @@
+DOWNLOADPATH = "/home/tangel/Chatboot/openai-api/download"
