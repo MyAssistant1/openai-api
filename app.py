@@ -13,7 +13,7 @@ import os
 import findwords
 import mailatma
 import findnames
-
+from findnames import kisiyi_bul
 def change_file_extension(file_path, new_extension):
     # Dosya adını ve uzantısını ayrıştır
     file_name, _ = os.path.splitext(file_path)
@@ -69,8 +69,10 @@ def upload():
     print(words)
     
     if "e-mail" in words or "E-mail" in words or "email" in words:
-        result = "email atıldı"
+        result = "Atilan email adresleri: \n" 
         findnames.bul(transcript)
+        for email in mailatma.takvim.gonderilenler:
+            result = result + "\n" + email
 
     # dosyayi silme
     file_to_delete = "/home/tangel/Indirilenler/recorded_audio.mp3"  # Silmek istediğiniz dosyanın yolu ve adı

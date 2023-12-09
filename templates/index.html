@@ -15,8 +15,21 @@
 <p id="timer">Geçen Süre: 0 saniye</p>
 
 <audio id="audioPlayer" controls></audio>
-<div id="resultDiv"></div>
 
+<style>
+.balloon {
+            display: inline-block;
+            background-color: #4CAF50; /* Yeşil renk */
+            color: white; /* Yazı rengi */
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 100%; /* Maksimum genişlik */
+            word-wrap: break-word; /* Uzun kelimeleri kır */
+        }
+</style>
+<div id="resultDiv" class="balloon"></div>
 
 <script>
 
@@ -91,18 +104,29 @@ function stopRecording() {
 
 function uploadAudio(blob) {
 
-    // Sunucuya POST isteği gönder
-    fetch('/upload', {
+     // Sunucuya POST isteği gönder
+     fetch('/upload', {
         method: 'POST',
     })
     .then(response => response.text())
     .then(data => {
         console.log('Server response:', data);
-        document.getElementById('resultDiv').innerText = 'Server Response: ' + data;
+        data = data + '\n';
+
+        // Sonucu bir baloncuk içinde göster
+        const resultDiv = document.getElementById('resultDiv');
+        resultDiv.innerText =  data;
+        resultDiv.classList.add('balloon'); // Baloncuk stili için sınıf ekleyin
     })
     .catch(error => {
+
         console.error('Error:', error);
-        document.getElementById('resultDiv').innerText = 'Error: ' + error.message;
+        error.message = error.message + '\n';
+
+        // Hata mesajını bir baloncuk içinde göster
+        const resultDiv = document.getElementById('resultDiv');
+        resultDiv.innerText = 'Error: ' + error.message;
+        resultDiv.classList.add('balloon'); // Baloncuk stili için sınıf ekleyin
     });
 
     audioChunks = []; // Önceki kaydı temizle

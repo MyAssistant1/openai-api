@@ -61,6 +61,9 @@ def bul (cumle):
         kisi = kisiyi_bul(isim, kisiler)
         if kisi:
             email_adresleri.append(kisi[2])
+
+           
+
             print("İsim:", kisi[0])
             print("Soyisim:", kisi[1])
             print("E-posta:", kisi[2])
