@@ -49,7 +49,7 @@ def upload():
 
 
     # dosya ismi degistirme
-    file_path = "/home/tangel/recorded_audio.ogx"
+    file_path = "/home/tangel/Indirilenler/recorded_audio.ogx"
     new_extension = "mp3"
 
     change_file_extension(file_path, new_extension)
@@ -57,7 +57,7 @@ def upload():
     result = " email atilamadi"
     
     #dosya okuma openai
-    new_file = open("/home/tangel/recorded_audio.mp3", "rb")
+    new_file = open("/home/tangel/Indirilenler/recorded_audio.mp3", "rb")
     transcript = client.audio.translations.create(
     model="whisper-1", 
     file=new_file, 
@@ -73,7 +73,7 @@ def upload():
         findnames.bul(transcript)
 
     # dosyayi silme
-    file_to_delete = "/home/tangel/recorded_audio.mp3"  # Silmek istediğiniz dosyanın yolu ve adı
+    file_to_delete = "/home/tangel/Indirilenler/recorded_audio.mp3"  # Silmek istediğiniz dosyanın yolu ve adı
     delete_file(file_to_delete)
     return   result
 
