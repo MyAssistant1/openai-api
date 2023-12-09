@@ -5,7 +5,6 @@ from flask_cors import CORS
 from openai import OpenAI
 from pydub import AudioSegment
 from pydub.playback import play
-
 from flask import Flask, request
 from pydub import AudioSegment
 from io import BytesIO
@@ -13,6 +12,7 @@ import time
 import os
 import findwords
 import mailatma
+import findnames
 
 def change_file_extension(file_path, new_extension):
     # Dosya adını ve uzantısını ayrıştır
@@ -64,14 +64,13 @@ def upload():
     response_format="text"
 )
     print(transcript)
+    #BURADA NE ISLEM YAPICAGINI ANALYZIZ FONKSIYONU ILE BULMAMIZ LAZIM BIZ ISE DIREK MAIL ATMAYI SECTIK.
     words = findwords.analiz_et(transcript)
     print(words)
     
     if "e-mail" in words or "E-mail" in words or "email" in words:
-        mailatma.emailgonder()
         result = "email atıldı"
-
-
+        findnames.bul(transcript)
 
     # dosyayi silme
     file_to_delete = "/home/tangel/recorded_audio.mp3"  # Silmek istediğiniz dosyanın yolu ve adı

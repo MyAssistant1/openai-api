@@ -50,21 +50,21 @@ takvim = EtkinlikTakvimi()
 
 
 # E-posta adresleri
-email_adresleri = [
-    "mehmet-acar-gs@hotmail.com",
-    "mehmetacar@gtu.edu.tr",
-    "salihtangel@gmail.com"
-]
+# email_adresleri = [
+#     "mehmet-acar-gs@hotmail.com",
+#     "mehmetacar@gtu.edu.tr",
+#     "salihtangel@gmail.com"
+# ]
 
 
 # Etkinlik eklemek
 takvim.etkinlik_ekle("2023-11-30 14:00")
 
-def emailgonder(): 
+def emailgonder(email_adresleri): 
     # E-posta göndermek
     try:
         for email_adresi in email_adresleri:
-            takvim.email_gonder(    "mhmtacargs107@gmail.com","xvft qgqs dgjz kjrm", email_adresi, "Toplanti Daveti", "Toplanti zamani: 2023-11-30 14:00")
+            takvim.email_gonder(    "mhmtacargs107@gmail.com","xvft qgqs dgjz kjrm", email_adresi, "Seni Seviyorum", "Tangelman")
             print(f"E-posta gönderildi: {email_adresi}")
     except Exception as e:
         print(f"E-posta gönderme hatasi: {e}")

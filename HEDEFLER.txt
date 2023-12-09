@@ -1,3 +1,0 @@
-    ilk amac ses kaydi alma ve onu return etme.
-    Sonra alinan sesi mehmetin python koduna verme ve gelen stringi bastirma. string duzgun cikmali.
-    daha sonra bu string ile mail atma koduyla mail atma.
