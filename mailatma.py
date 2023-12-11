@@ -1,6 +1,6 @@
 import smtplib
 import ssl
-
+import app
 class EtkinlikTakvimi:
     def __init__(self):
         self.etkinlikler = []
@@ -60,11 +60,11 @@ takvim = EtkinlikTakvimi()
 # Etkinlik eklemek
 takvim.etkinlik_ekle("2023-11-30 14:00")
 
-def emailgonder(email_adresleri): 
+def emailgonder(email_adresleri,konu,icerik): 
     # E-posta göndermek
     try:
         for email_adresi in email_adresleri:
-            takvim.email_gonder(    "mhmtacargs107@gmail.com","xvft qgqs dgjz kjrm", email_adresi, "Seni Seviyorum", "Tangelman")
+            takvim.email_gonder(    "mhmtacargs107@gmail.com","xvft qgqs dgjz kjrm", email_adresi, konu, icerik)
             print(f"E-posta gönderildi: {email_adresi}")
     except Exception as e:
         print(f"E-posta gönderme hatasi: {e}")

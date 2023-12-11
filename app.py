@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request
 import findnames
 import mailatma
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -12,13 +13,19 @@ def index():
 def process_audio():
     
     data = request.form.get('text')
+    _list = data.split("%%")
+    print(_list[0])
+    print(_list[1])
+    print(_list[2])
     # Burada işlem yapabilirsiniz, örneğin metni başka bir sistemle işleyebilir veya depolayabilirsiniz.
-    print("Received audio transcript:", data)
+    #print("Received audio transcript:", data)
     result = " email atilamadi"
     check = False
 
-    if "e-mail" in data or "E-mail" in data or "email" in data:
-        check = findnames.bul(data)
+    if "e-mail" in _list[0] or "E-mail" in _list[0] or "email" in _list[0]:
+        
+        ## 3 sefer 
+        check = findnames.bul(_list[0],_list[1],_list[2])
     
     if check:
         #if "e-mail" in words or "E-mail" in words or "email" in words:
@@ -29,3 +36,4 @@ def process_audio():
 
 if __name__ == '__main__':
     app.run(debug=True)
+

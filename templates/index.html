@@ -17,13 +17,32 @@
     <audio id="audioPlayer" controls></audio>
     <p id="timer">0 saniye</p>
 
+    <form action="#" method="post">
+        <label for="input1">isim 1:</label>
+        <div id="konuText"></div>
+
+        <label for="input1">konu 1:</label>
+        <div id="konuText2"></div>
+        
+        <label for="input1">icerik 1:</label>
+        <div id="konuText3"></div>
+
+    </form>
+
     <script>
+
+
+        // <input type="text" id="konuText"  value = "" name="input1"  >
         const startRecordingButton = document.getElementById('startRecording');
         const stopRecordingButton = document.getElementById('stopRecording');
         const transcriptionOutput = document.getElementById('transcription');
         const resultDiv = document.getElementById('resultDiv');
         const audioPlayer = document.getElementById('audioPlayer');
         const timerOutput = document.getElementById('timer');
+        const konuText = document.getElementById('konuText');
+        const konuText2 = document.getElementById('konuText2');
+        const konuText3 = document.getElementById('konuText3');
+        var key = 0;
 
         let recognition;
         let timer;
@@ -58,8 +77,21 @@
                 for (let i = event.resultIndex; i < event.results.length; i++) {
                     const transcript = event.results[i][0].transcript;
                     if (event.results[i].isFinal) {
-                        transcriptionOutput.textContent = transcript;
-                        sendTextToPython(transcript);
+                        //transcriptionOutput.textContent = transcript;
+                        //sendTextToPython(transcript); // alınan metin
+                       
+                        if (key == 0){
+                            getName(transcript)
+                        }
+                        if (key == 1){
+                            getKonu(transcript)
+                        }
+                        if (key == 2){
+                            getIcerik(transcript)
+                            sendTextToPythonNew("transcript")
+                        }
+                        key++;
+
                     } else {
                         interimTranscript += transcript;
                     }
@@ -75,19 +107,30 @@
             startRecordingButton.disabled = false;
             stopRecordingButton.disabled = true;
         });
+        function getName(text){
+            konuText.textContent=text;
+        }
+        function getKonu(text){
+            konuText2.textContent=text;
+        }
+        function getIcerik(text){
+            konuText3.textContent=text;
+        }
 
-        function sendTextToPython(text) {
+        function sendTextToPythonNew(text) {
+            var text1 = konuText.textContent+"%%"+konuText2.textContent+"%%"+konuText3.textContent
+            console.log(text1)
             fetch('/process_audio', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'text=' + encodeURIComponent(text),
+                body: 'text=' + encodeURIComponent(text1),
             })
             .then(response => response.text())
             .then(data => {
                 console.log('Response from server:', data);
-                resultDiv.innerText =  data;
+                //resultDiv.innerText =  data;
                 // Assume 'data' contains the path or URL of the recorded audio file
                 audioPlayer.src = data;
             })
@@ -95,6 +138,7 @@
                 console.error('Error sending data to server:', error);
             });
         }
+
     </script>
 </body>
 </html>

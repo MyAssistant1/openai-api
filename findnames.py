@@ -17,10 +17,10 @@
 
 import re
 import mailatma
-
-def isimleri_bul(cumle):
+import _asyncio
+def isimleri_bul(isim):
     # Cümleden isimleri çıkarmak için regex kullanalım
-    isimler = re.findall(r'\b[A-Za-zÇçĞğİıÖöŞşÜü]+\b', cumle)
+    isimler = re.findall(r'\b[A-Za-zÇçĞğİıÖöŞşÜü]+\b', isim)
     return isimler
 
 def kisiyi_bul(isim, kisiler):
@@ -37,12 +37,12 @@ def kisiyi_bul(isim, kisiler):
 
     return None
 
-def bul(cumle):
+def bul(isim,konu,icerik):
     # Örnek cümle
     #cumle = "Salih ve Mehmet'e mail at"
 
     # Cümleden isimleri çıkar
-    isimler = isimleri_bul(cumle)
+    isimler = isimleri_bul(isim)
 
     # Kişiler listesi
     kisiler = [
@@ -50,6 +50,8 @@ def bul(cumle):
         ("Ayşe", "Demir", "ayse.demir@email.com"),
         ("Mehmet", "Acar", "mehmet-acar-gs@hotmail.com"),
         ("Ahmet", "Celik", "ahmet.celik@email.com"),
+        ("Yusuf", "Aslan", "ysf.arslan2017@gmail.com"),
+
 
 
     ]
@@ -68,7 +70,15 @@ def bul(cumle):
             print()
 
     if check==True:
-        mailatma.emailgonder(email_adresleri)
+        mailatma.emailgonder(email_adresleri,konu,icerik)
 
     return check
+
+async def getKonu(text):
+    #front ente konuyu girin
+    return
+
+async def getIcerik(text):
+    #front ente konuyu girin
+    return
 
