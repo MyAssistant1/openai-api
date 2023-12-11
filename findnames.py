@@ -50,7 +50,6 @@ def bul(cumle):
         ("Ayşe", "Demir", "ayse.demir@email.com"),
         ("Mehmet", "Acar", "mehmet-acar-gs@hotmail.com"),
         ("Ahmet", "Celik", "ahmet.celik@email.com"),
-        ("Ayşe", "Oz", "ayse.oz@email.com"),
 
 
     ]
