@@ -1,4 +1,3 @@
-
 # Refer to the Python quickstart on how to setup the environment:
 # https://developers.google.com/calendar/quickstart/python
 # Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
@@ -61,5 +60,4 @@ credentials = flow.run_local_server(port=0)
 service = build(API_NAME, API_VERSION, credentials=credentials)
 event = service.events().insert(calendarId='primary', body=event).execute()
 print ('Event created: %s' % (event.get('htmlLink')) )
-
 

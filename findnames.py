@@ -37,15 +37,16 @@ def kisiyi_bul(isim, kisiler):
 
     return None
 
-def bul (cumle): 
+def bul(cumle):
     # Örnek cümle
+    #cumle = "Salih ve Mehmet'e mail at"
+
     # Cümleden isimleri çıkar
     isimler = isimleri_bul(cumle)
 
     # Kişiler listesi
     kisiler = [
         ("Salih", "Tangel", "salihtangel@gmail.com"),
-        ("Salih", "Demir", "demir@gmail.com"),
         ("Ayşe", "Demir", "ayse.demir@email.com"),
         ("Mehmet", "Acar", "mehmet-acar-gs@hotmail.com"),
         ("Ahmet", "Celik", "ahmet.celik@email.com"),
@@ -54,20 +55,21 @@ def bul (cumle):
 
     ]
 
-
     # Cümlede bulunan her bir isim için kişiler listesinde kontrol et
     email_adresleri = []
+    check = False
     for isim in isimler:
         kisi = kisiyi_bul(isim, kisiler)
         if kisi:
+            check = True
             email_adresleri.append(kisi[2])
-
-           
-
             print("İsim:", kisi[0])
             print("Soyisim:", kisi[1])
             print("E-posta:", kisi[2])
             print()
 
-    mailatma.emailgonder(email_adresleri)
+    if check==True:
+        mailatma.emailgonder(email_adresleri)
+
+    return check
 
