@@ -12,7 +12,7 @@ def index():
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
     
-
+    #deneme
     #bir fonksyion e-mail or start an event()
     #event e eklenicek kisiler
     # Manuel olarak da mail adresi girebilmeli
