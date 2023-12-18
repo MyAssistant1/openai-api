@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speech-to-Text</title>
+
+    <title>Ethan AI ASSISTANT</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+    <h1>In Here Enter Your Mail Adress</h1>
+    <form id="myForm">
+        <label for="text_input">Metni Girin:</label>
+        <input type="text" id="text_input" name="user_text">
+        <button type="button" onclick="submitForm()">Send</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        function submitForm() {
+            var formData = {
+                user_text: $('#text_input').val()
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/submit',
+                data: formData,
+                success: function(data) {
+                    $('#result').text('Mail adresi alındı: ' + data);
+                },
+                error: function(error) {
+                    console.log('Hata:', error);
+                }
+            });
+        }
+    </script>
+
     <h1>Speech-to-Text</h1>
 
     <button id="startRecording">Ses Kaydı Başlat</button>

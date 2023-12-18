@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,jsonify
 import findnames
 import mailatma
 import event
@@ -8,6 +8,17 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    user_text = request.form.get('user_text')
+    # Burada kullanıcı tarafından girilen metni işleyebilirsiniz
+    print(f'Kullanıcının girdiği metin: {user_text}')
+    
+    # Burada kullanıcıya e-posta adresini gönderilebilir
+    # Şu an sadece örnek bir mesaj gönderiyoruz
+    return jsonify(result='örnek@mail.com')  # Gerçek sonucu JSON formatında döndürüyoruz
+
 
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
