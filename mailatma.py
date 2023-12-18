@@ -67,7 +67,7 @@ def emailgonder(email_adresleri,konu,icerik):
             #buradaki sifre mail adresine gore ayarli.
             #o sifre application password
             
-            takvim.email_gonder(    "mhmtacargs107@gmail.com","xvft qgqs dgjz kjrm", email_adresi, konu, icerik)
+            takvim.email_gonder("mhmtacargs107@gmail.com","xvft qgqs dgjz kjrm", email_adresi, konu, icerik)
             print(f"E-posta gönderildi: {email_adresi}")
     except Exception as e:
         print(f"E-posta gönderme hatasi: {e}")

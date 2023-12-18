@@ -10,8 +10,8 @@
 <body>
     <h1>Ethan Ai Assistant</h1>
 
-
-    <h1>In below please enter your mail adress for use</h1>
+     
+    <!-- <h1>In below please enter your mail adress for use</h1>
     <form id="myForm">
         <label for="text_input">Metni Girin:</label>
         <input type="text" id="text_input" name="user_text">
@@ -38,7 +38,7 @@
                 }
             });
         }
-    </script>
+    </script> -->
 
     <h1>Speech-to-Text</h1>
 
@@ -104,7 +104,6 @@
         startRecordingButton.addEventListener('click', () => {
             recognition = new webkitSpeechRecognition()|| SpeechRecognition();
             // Set language to English (United States)
-            recognition.lang = 'en-US';
             recognition.continuous = true;
             recognition.interimResults = true;
 
