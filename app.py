@@ -11,7 +11,7 @@ def index():
 
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
-    
+    #MEHMET ACAR NASILSIN
 
     #bir fonksyion e-mail or start an event()
     #event e eklenicek kisiler
