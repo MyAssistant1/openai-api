@@ -92,3 +92,5 @@ def addEvent(subject,content,input_date_time_str):
 
   event = service.events().insert(calendarId='primary', body=event).execute()
   print ('Event created: %s' % (event.get('htmlLink')) )
+
+#Salih Tangel
