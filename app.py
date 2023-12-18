@@ -2,7 +2,7 @@
 from flask import Flask, render_template, request
 import findnames
 import mailatma
-
+import event
 app = Flask(__name__)
 
 @app.route('/')
@@ -12,6 +12,11 @@ def index():
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
     
+
+    #bir fonksyion e-mail or start an event()
+    #event e eklenicek kisiler
+    # Manuel olarak da mail adresi girebilmeli
+    #
     data = request.form.get('text')
     _list = data.split("%%")
     print(_list[0])
@@ -26,6 +31,9 @@ def process_audio():
         
         ## 3 sefer 
         check = findnames.bul(_list[0],_list[1],_list[2])
+    elif "Etkinlik" in _list[0] or "etkinlik" in _list[0]:
+        #front ende event baslatiliyor yazicaz.
+        event.addEvent()
     
     if check:
         #if "e-mail" in words or "E-mail" in words or "email" in words:
