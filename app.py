@@ -31,7 +31,7 @@ def process_audio():
         
         ## 3 sefer 
         check = findnames.bul(_list[0],_list[1],_list[2])
-    elif "Etkinlik" in _list[0] or "etkinlik" in _list[0]:
+    elif "Event" in _list[0] or "event" in _list[0]:
         #front ende event baslatiliyor yazicaz.
         event.addEvent()
     

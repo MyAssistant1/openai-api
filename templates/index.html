@@ -62,7 +62,9 @@
         }
 
         startRecordingButton.addEventListener('click', () => {
-            recognition = new webkitSpeechRecognition();
+            recognition = new webkitSpeechRecognition()|| SpeechRecognition();
+            // Set language to English (United States)
+            recognition.lang = 'en-US';
             recognition.continuous = true;
             recognition.interimResults = true;
 
