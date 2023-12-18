@@ -27,6 +27,9 @@
         <label for="input1">icerik 1:</label>
         <div id="konuText3"></div>
 
+        <label for="input1">time(optional):</label>
+        <div id="konuText4"></div>
+
     </form>
 
     <script>
@@ -42,6 +45,7 @@
         const konuText = document.getElementById('konuText');
         const konuText2 = document.getElementById('konuText2');
         const konuText3 = document.getElementById('konuText3');
+        const konuText4 = document.getElementById('konuText4');
         var key = 0;
 
         let recognition;
@@ -90,6 +94,9 @@
                         }
                         if (key == 2){
                             getIcerik(transcript)
+                        }
+                        if (key == 3){
+                            getTime(transcript)
                             sendTextToPythonNew("transcript")
                         }
                         key++;
@@ -118,9 +125,12 @@
         function getIcerik(text){
             konuText3.textContent=text;
         }
+        function getTime(text){
+            konuText4.textContent=text;
+        }
 
         function sendTextToPythonNew(text) {
-            var text1 = konuText.textContent+"%%"+konuText2.textContent+"%%"+konuText3.textContent
+            var text1 = konuText.textContent+"%%"+konuText2.textContent+"%%"+konuText3.textContent+"%%"+konuText4.textContent
             console.log(text1)
             fetch('/process_audio', {
                 method: 'POST',

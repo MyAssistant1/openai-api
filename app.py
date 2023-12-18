@@ -22,6 +22,7 @@ def process_audio():
     print(_list[0])
     print(_list[1])
     print(_list[2])
+    print(_list[3])
     # Burada işlem yapabilirsiniz, örneğin metni başka bir sistemle işleyebilir veya depolayabilirsiniz.
     #print("Received audio transcript:", data)
     result = " email atilamadi"
