@@ -18,18 +18,18 @@
     <p id="timer">0 saniye</p>
 
     <form action="#" method="post">
-        <label for="input1">isim 1:</label>
-        <div id="konuText"></div>
+        <label >Task :</label>
+        <div id="task"></div>
 
-        <label for="input1">konu 1:</label>
-        <div id="konuText2"></div>
+        <label >Subject :</label>
+        <div id="subject"></div>
         
-        <label for="input1">icerik 1:</label>
-        <div id="konuText3"></div>
+        <label >Content:</label>
+        <div id="content"></div>
 
-        <label for="input1">time(optional):</label>
-        <div id="konuText4"></div>
-
+        <label >time(optional):</label>
+        <div id="time"></div>
+        <button id="btn">Send</button>
     </form>
 
     <script>
@@ -42,10 +42,12 @@
         const resultDiv = document.getElementById('resultDiv');
         const audioPlayer = document.getElementById('audioPlayer');
         const timerOutput = document.getElementById('timer');
-        const konuText = document.getElementById('konuText');
-        const konuText2 = document.getElementById('konuText2');
-        const konuText3 = document.getElementById('konuText3');
-        const konuText4 = document.getElementById('konuText4');
+        const task = document.getElementById('task');
+        const subject = document.getElementById('subject');
+        const content = document.getElementById('content');
+        const time = document.getElementById('time');
+        const button = document.getElementById('btn');
+
         var key = 0;
 
         let recognition;
@@ -97,7 +99,7 @@
                         }
                         if (key == 3){
                             getTime(transcript)
-                            sendTextToPythonNew("transcript")
+                            //sendTextToPythonNew()
                         }
                         key++;
 
@@ -117,20 +119,20 @@
             stopRecordingButton.disabled = true;
         });
         function getName(text){
-            konuText.textContent=text;
+            task.textContent=text;
         }
         function getKonu(text){
-            konuText2.textContent=text;
+            subject.textContent=text;
         }
         function getIcerik(text){
-            konuText3.textContent=text;
+            content.textContent=text;
         }
         function getTime(text){
-            konuText4.textContent=text;
+            time.textContent=text;
         }
 
-        function sendTextToPythonNew(text) {
-            var text1 = konuText.textContent+"%%"+konuText2.textContent+"%%"+konuText3.textContent+"%%"+konuText4.textContent
+        function sendTextToPythonNew() {
+            var text1 = task.textContent+"%%"+subject.textContent+"%%"+content.textContent+"%%"+time.textContent
             console.log(text1)
             fetch('/process_audio', {
                 method: 'POST',
@@ -150,6 +152,16 @@
                 console.error('Error sending data to server:', error);
             });
         }
+
+        button.addEventListener('click', () => {
+            //sendTextToPythonNew();
+            document.querySelector('form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Formun varsayılan gönderme işlemini engelle
+                
+                sendTextToPythonNew(); // Metni göndermek için işlevi çağır
+            });
+        });
+
 
     </script>
 </body>
