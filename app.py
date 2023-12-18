@@ -12,7 +12,7 @@ def index():
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
     
-    #deneme
+
     #bir fonksyion e-mail or start an event()
     #event e eklenicek kisiler
     # Manuel olarak da mail adresi girebilmeli
@@ -34,7 +34,7 @@ def process_audio():
         check = findnames.bul(_list[0],_list[1],_list[2])
     elif "Event" in _list[0] or "event" in _list[0]:
         #front ende event baslatiliyor yazicaz.
-        event.addEvent(_list[0],_list[1],_list[2],_list[3])
+        event.addEvent(_list[1],_list[2],_list[3])
         #_list[3] bizim saatimiz olucak.
 
 
@@ -47,4 +47,3 @@ def process_audio():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
