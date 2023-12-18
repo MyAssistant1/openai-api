@@ -34,8 +34,10 @@ def process_audio():
         check = findnames.bul(_list[0],_list[1],_list[2])
     elif "Event" in _list[0] or "event" in _list[0]:
         #front ende event baslatiliyor yazicaz.
-        event.addEvent()
-    
+        event.addEvent(_list[0],_list[1],_list[2],_list[3])
+        #_list[3] bizim saatimiz olucak.
+
+
     if check:
         #if "e-mail" in words or "E-mail" in words or "email" in words:
         result = "Atilan email adresleri: \n" 
