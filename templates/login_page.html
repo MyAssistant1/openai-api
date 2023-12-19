@@ -56,8 +56,8 @@
         <h2>Login</h2>
         <form >
             <div class="input-group">
-            <label >Username :</label>
-            <input type="text" id="username" name="username" required>
+            <label >Eposta :</label>
+            <input type="text" id="email" name="email" required>
             </div>
             <div class="input-group">
             <label >Aplication Password:</label>
@@ -73,7 +73,7 @@
 
 const button = document.getElementById('btn');
 const form = document.querySelector('form');
-const username = document.getElementById('username');
+const email = document.getElementById('email');
 const password = document.getElementById('password');
 
 form.addEventListener('submit', function(event) {
@@ -83,7 +83,7 @@ form.addEventListener('submit', function(event) {
 });
 
 function sendTextToPython() {
-    const text = username.value + "%%" + password.value;
+    const text = email.value + "%%" + password.value;
 
     fetch('/login_page', {
         method: 'POST',
@@ -96,6 +96,9 @@ function sendTextToPython() {
     .then(data => {
         console.log('Response from server:', data);
         // Burada yapmak istediğiniz işlemi gerçekleştirin
+        if(data=='ok'){
+            window.location.href = '/email';
+        }
     })
     .catch(error => {
         console.error('Error sending data to server:', error);

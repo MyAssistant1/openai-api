@@ -1,24 +1,25 @@
 
-from flask import Flask, render_template, request,jsonify
+from flask import Flask, render_template, request,jsonify,redirect,url_for
 import findnames
 import mailatma
 import event
+import json
+import os
 app = Flask(__name__)
 
 @app.route('/')
 def index():
+    if os.path.exists('files/user.json'):
+        return render_template('index.html')
+    return render_template('login_page.html')
+
+@app.route('/login', methods=['GET'])
+def login():
+    return render_template('login_page.html')
+
+@app.route('/email', methods=['GET'])
+def email():
     return render_template('index.html')
-
-@app.route('/submit', methods=['POST'])
-def submit():
-    user_text = request.form.get('user_text')
-    # Burada kullanıcı tarafından girilen metni işleyebilirsiniz
-    print(f'Kullanıcının girdiği metin: {user_text}')
-    
-    # Burada kullanıcıya e-posta adresini gönderilebilir
-    # Şu an sadece örnek bir mesaj gönderiyoruz
-    return jsonify(result='örnek@mail.com')  # Gerçek sonucu JSON formatında döndürüyoruz
-
 
 @app.route('/process_audio', methods=['POST'])
 def process_audio():
@@ -56,9 +57,7 @@ def process_audio():
             result = result + "\n" + email
     return result
 
-@app.route('/login', methods=['GET'])
-def login():
-    return render_template('login_page.html')
+
 
 @app.route('/login_page', methods=['POST'])
 def login_page():
@@ -69,12 +68,24 @@ def login_page():
     username=_list[0]
     password=_list[1] 
     print("username: ",username," password: ",password)
-    return render_template('index.html')
 
  
+    # Data to be written
+    dictionary = {
+        "email": username,
+        "password": password,
+    }
+    
+    # Serializing json
+    json_object = json.dumps(dictionary, indent=4)
+    
+    # Writing to sample.json
+    with open("files/user.json", "w") as outfile:
+        outfile.write(json_object)
+
+    return "ok"
+
     
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-#tangelman

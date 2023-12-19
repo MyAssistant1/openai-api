@@ -39,7 +39,8 @@
             });
         }
     </script> -->
-
+    
+    <button id="lgn-btn"><a href="/login">Login Email</a></button>
     <h1>Speech-to-Text</h1>
 
     <button id="startRecording">Start Record</button>
@@ -100,7 +101,7 @@
             seconds = 0;
             timerOutput.textContent = '0 saniye';
         }
-
+        
         startRecordingButton.addEventListener('click', () => {
             recognition = new webkitSpeechRecognition()|| SpeechRecognition();
             // Set language to English (United States)
