@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .login-box {
+            width: 300px;
+            margin: 100px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .login-box .input-group {
+            margin-bottom: 15px;
+        }
+        .login-box .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .login-box .input-group input {
+            width: calc(100% - 12px);
+            padding: 8px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+        .login-box .input-group input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        .login-box .input-group .btn {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 3px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .login-box .input-group .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Login</h2>
+        <form >
+            <div class="input-group">
+            <label >Username :</label>
+            <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+            <label >Aplication Password:</label>
+            <input type="text" id="password" name="password" required>
+            </div>
+            <div class="input-group">
+            <button id="btn">Send</button></div>
+        </form>
+    </div>
+    
+</body>
+    <script>
+
+const button = document.getElementById('btn');
+const form = document.querySelector('form');
+const username = document.getElementById('username');
+const password = document.getElementById('password');
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Formun varsayılan gönderme işlemini engelle
+    
+    sendTextToPython(); // Metni göndermek için işlevi çağır
+});
+
+function sendTextToPython() {
+    const text = username.value + "%%" + password.value;
+
+    fetch('/login_page', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'text=' + encodeURIComponent(text),
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log('Response from server:', data);
+        // Burada yapmak istediğiniz işlemi gerçekleştirin
+    })
+    .catch(error => {
+        console.error('Error sending data to server:', error);
+    });
+}
+
+    </script>
+
+</html>

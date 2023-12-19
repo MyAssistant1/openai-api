@@ -56,6 +56,24 @@ def process_audio():
             result = result + "\n" + email
     return result
 
+@app.route('/login', methods=['GET'])
+def login():
+    return render_template('login_page.html')
+
+@app.route('/login_page', methods=['POST'])
+def login_page():
+    
+    data = request.form.get('text')
+    print(data)
+    _list = data.split("%%")
+    username=_list[0]
+    password=_list[1] 
+    print("username: ",username," password: ",password)
+    return render_template('index.html')
+
+ 
+    
+
 if __name__ == '__main__':
     app.run(debug=True)
 
