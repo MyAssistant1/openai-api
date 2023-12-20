@@ -2,42 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <title>How to get Application Password</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        .login-box {
-            width: 300px;
-            margin: 100px auto 5px auto;
+        .login-container {
+            width: 50%;
             background: #fff;
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-left: 20px; /* Gif ile form arasına bir boşluk bırakma */
         }
-        .login-box h2 {
+        .login-container h2 {
             text-align: center;
             margin-bottom: 20px;
         }
-        .login-box .input-group {
+        .input-group {
             margin-bottom: 15px;
         }
-        .login-box .input-group label {
+        .input-group label {
             display: block;
             margin-bottom: 5px;
         }
-        .login-box .input-group input {
+        .input-group input {
             width: calc(100% - 12px);
             padding: 8px;
             border-radius: 3px;
             border: 1px solid #ccc;
         }
-        .login-box .input-group input:focus {
+        .input-group input:focus {
             outline: none;
             border-color: #007bff;
         }
-        .login-box .input-group .btn {
+        .input-group button {
             width: 100%;
             padding: 8px;
             border: none;
@@ -46,48 +55,50 @@
             color: #fff;
             cursor: pointer;
         }
-        .login-box .input-group .btn:hover {
+        .input-group button:hover {
             background-color: #0056b3;
         }
-
-        .image{
-            margin: 0 0 50px 0;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            top: 5px;
+        .image {
+            width: 50%;
         }
-
-        
-
+        #gif {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <div class="login-box">
+
+    <!-- Resim -->
+
+    <div class="image">
+        <img id="gif" src="{{ url_for('static', filename='resimler/getpassword.gif') }}" alt="Get Password Image">
+    </div>
+
+    <div class="login-container">
+        <!-- Form -->
         <h2>Login</h2>
-        <form >
+        <form>
             <div class="input-group">
-            <label >Eposta :</label>
-            <input type="text" id="email" name="email" required>
+                <label>Eposta:</label>
+                <input type="text" id="email" name="email" required>
             </div>
             <div class="input-group">
-            <label >Aplication Password:</label>
-            <input type="text" id="password" name="password" required>
+                <label>Aplication Password:</label>
+                <input type="text" id="password" name="password" required>
             </div>
             <div class="input-group">
-            <button id="btn">Send</button></div>
-            
+                <button id="btn">Send</button>
+            </div>
         </form>
         <div class="input-group">
-            <label >How to get  Aplication Password</label>
-            <button id="btnA" onclick="showPopup(this.src)">show</button>
         </div>
     </div>
-     
-    <div id="image-div" class="image" style="visibility: hidden; height: 0%; ">
-        <img id="gif" style="visibility: hidden; height: 0%; " src="{{ url_for('static', filename='resimler/getpassword.gif') }}" >
-    </div>
+
 </body>
+</html>
+
     <script>
 
 const button = document.getElementById('btn');
@@ -124,19 +135,7 @@ function sendTextToPython() {
     });
 }
 
-function showPopup() {
-    const gif = document.getElementById("gif");
-    const div = document.getElementById("image-div");
 
-    if (gif.style.visibility === "visible") {
-        gif.style.visibility = "hidden"; // Resmi gizle
-        div.style.visibility = "hidden"; // Resmi gizle
-    } else {
-        gif.style.visibility = "visible"; // Resmi görünür yap
-        div.style.visibility = "visible"; // Resmi görünür yap
-    }
-
-}
 
     </script>
 
